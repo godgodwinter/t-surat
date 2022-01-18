@@ -20,10 +20,10 @@ Beranda
 
     <div class="container">
       <div class="row min-vh-xl-100 min-vh-xxl-25">
-        <div class="col-md-5 col-xl-6 col-xxl-7 order-0 order-md-1 text-end"><img class="pt-7 pt-md-0 w-100" src="{{url('/')}}/assets/img/undraw_junior_soccer.svg" alt="hero-header" /></div>
+        <div class="col-md-5 col-xl-6 col-xxl-7 order-0 order-md-1 text-end"><img class="pt-7 pt-md-0 w-100" src="{{url('/')}}/assets/img/undraw/undraw_confidential_letter_w6ux.svg" alt="hero-header" /></div>
         <div class="col-md-75 col-xl-6 col-xxl-5 text-md-start text-center py-6">
-          <h1 class="fw-light font-base fs-6 fs-xxl-7">SPK <strong>Penentuan Posisi Pemain </strong> di <br />SSB&nbsp;<strong>Tulusrejo FC.</strong></h1>
-          <p class="fs-1 mb-5">Menggunakan Metode MFEP dengan tambahan notifikasi Whatsapp. </p><a class="btn btn-lg btn-primary rounded-pill" href="{{route('login')}}" role="button">Login</a>
+          <h1 class="fw-light font-base fs-6 fs-xxl-7">SI <strong>Administrasi Surat</strong> .</strong></h1>
+          {{-- <p class="fs-1 mb-5">Menggunakan Metode MFEP dengan tambahan notifikasi Whatsapp. </p><a class="btn btn-lg btn-primary rounded-pill" href="{{route('login')}}" role="button">Login</a> --}}
         </div>
       </div>
     </div>
