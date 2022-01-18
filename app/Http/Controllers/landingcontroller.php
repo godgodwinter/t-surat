@@ -18,23 +18,24 @@ class landingcontroller extends Controller
 {
     public function index(){
         $pages='beranda';
-    return view('landing.pages.index',compact('pages'));
+    return view('auth.login',compact('pages'));
+    // return view('landing.pages.index',compact('pages'));
     }
 
-    public function pemain(){
-        $pages='pemain';
-        $datas=pemain::paginate(12);
-    return view('landing.pages.pemain',compact('pages','datas'));
-    }
+    // public function pemain(){
+    //     $pages='pemain';
+    //     $datas=pemain::paginate(12);
+    // return view('landing.pages.pemain',compact('pages','datas'));
+    // }
 
-    public function pelatih(){
-        $pages='pelatih';
-        $datas=pelatih::paginate(12);
-    return view('landing.pages.pelatih',compact('pages','datas'));
-    }
+    // public function pelatih(){
+    //     $pages='pelatih';
+    //     $datas=pelatih::paginate(12);
+    // return view('landing.pages.pelatih',compact('pages','datas'));
+    // }
 
-    public function about(){
-        $pages='about';
-    return view('landing.pages.about',compact('pages'));
-    }
+    // public function about(){
+    //     $pages='about';
+    // return view('landing.pages.about',compact('pages'));
+    // }
 }
