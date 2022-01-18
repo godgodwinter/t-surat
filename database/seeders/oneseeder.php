@@ -50,11 +50,20 @@ class oneseeder extends Seeder
 
           $faker = Faker::create('id_ID');
 
+        DB::table('divisi')->insertGetId([
+          'nama' =>  'Inventaris',
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now()
+      ]);
+
+
           $divisi_id=DB::table('divisi')->insertGetId([
-              'nama' =>  'Humas',
+              'nama' =>  'HRD',
               'created_at' => Carbon::now(),
               'updated_at' => Carbon::now()
           ]);
+
+
 
           $nama='Paimin';
           $nomerinduk='123';
@@ -71,5 +80,59 @@ class oneseeder extends Seeder
           ]);
 
 
+          $users_id=DB::table('users')->insertGetId([
+            'name' =>  'Pijo',
+            'email' => $faker->unique()->email,
+            'username'=>'direksi',
+            'nomerinduk'=>'99',
+            'password' => Hash::make('direksi'),
+            'tipeuser' => 'direksi',
+            'divisi_id' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+
+          DB::table('kategori')->insertGetId([
+            'nama' =>  'Peminjaman',
+            'prefix' =>  'suratmasuk',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        DB::table('kategori')->insertGetId([
+          'nama' =>  'Lamaran Pekerjaan',
+          'prefix' =>  'suratmasuk',
+          'created_at' => Carbon::now(),
+          'updated_at' => Carbon::now()
+      ]);
+
+      DB::table('kategori')->insertGetId([
+        'nama' =>  'Undangan',
+        'prefix' =>  'suratmasuk',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ]);
+
+
+    DB::table('kategori')->insertGetId([
+        'nama' =>  'Pengantar',
+        'prefix' =>  'suratkeluar',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ]);
+    DB::table('kategori')->insertGetId([
+        'nama' =>  'Pengajuan',
+        'prefix' =>  'suratkeluar',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ]);
+
+    DB::table('kategori')->insertGetId([
+        'nama' =>  'Permohonan',
+        'prefix' =>  'suratkeluar',
+        'created_at' => Carbon::now(),
+        'updated_at' => Carbon::now()
+    ]);
     }
 }

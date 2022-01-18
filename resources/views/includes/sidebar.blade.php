@@ -3,20 +3,20 @@
       <h3>General</h3>
       <ul class="nav side-menu">
         <li><a href="{{route('dashboard')}}"><i class="fa fa-laptop"></i> Beranda </a></li>
+        <li><a href="{{route('divisi')}}"><i class="fa fa-laptop"></i> Divisi </a></li>
       <li><a href="{{route('users')}}"><i class="fa fa-laptop"></i> Users </a></li>
-      <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Divisi </a></li>
 
       <li><a><i class="fa fa-home"></i> Surat Masuk <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="index.html">Kategori</a></li>
-          <li><a href="index2.html">Surat Masuk</a></li>
+          <li><a href="{{route('kategori')}}">Kategori</a></li>
+          <li><a href="{{route('suratmasuk')}}">Surat Masuk</a></li>
         </ul>
       </li>
 
       <li><a><i class="fa fa-home"></i> Surat Keluar <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="index.html">Kategori</a></li>
-          <li><a href="index2.html">Surat Keluar</a></li>
+          <li><a href="{{route('kategori')}}">Kategori</a></li>
+          <li><a href="{{route('suratkeluar')}}">Surat Keluar</a></li>
         </ul>
       </li>
 

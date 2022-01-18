@@ -3,7 +3,9 @@
 use App\Http\Controllers\adminapicontroller;
 use App\Http\Controllers\admincetakcontroller;
 use App\Http\Controllers\admindashboardcontroller;
+use App\Http\Controllers\admindivisicontroller;
 use App\Http\Controllers\admingrafikcontroller;
+use App\Http\Controllers\adminkategoricontroller;
 use App\Http\Controllers\adminkriteriacontroller;
 use App\Http\Controllers\adminkriteriadetailcontroller;
 use App\Http\Controllers\adminnotifcontroller;
@@ -18,6 +20,8 @@ use App\Http\Controllers\adminprosesperhitungancontroller;
 use App\Http\Controllers\adminseedercontroller;
 use App\Http\Controllers\adminseederthcontroller;
 use App\Http\Controllers\adminsettingscontroller;
+use App\Http\Controllers\adminsuratkeluarcontroller;
+use App\Http\Controllers\adminsuratmasukcontroller;
 use App\Http\Controllers\admintahunpenilaiancontroller;
 use App\Http\Controllers\admintahunpenilaiandetailcontroller;
 use App\Http\Controllers\adminuserscontroller;
@@ -54,10 +58,44 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/users/{id}', [adminuserscontroller::class, 'edit'])->name('users.edit');
     Route::put('/admin/users/{id}', [adminuserscontroller::class, 'update'])->name('users.update');
     Route::delete('/admin/users/{id}', [adminuserscontroller::class, 'destroy'])->name('users.destroy');
-    Route::get('/admin/datausers/cari', [adminuserscontroller::class, 'cari'])->name('users.cari');
     Route::get('/admin/datausers/create', [adminuserscontroller::class, 'create'])->name('users.create');
     Route::post('/admin/datausers', [adminuserscontroller::class, 'store'])->name('users.store');
-    Route::delete('/admin/datausers/multidel', [adminuserscontroller::class, 'multidel'])->name('users.multidel');
+
+
+    //divisi
+    Route::get('/admin/divisi', [admindivisicontroller::class, 'index'])->name('divisi');
+    Route::get('/admin/divisi/{id}', [admindivisicontroller::class, 'edit'])->name('divisi.edit');
+    Route::put('/admin/divisi/{id}', [admindivisicontroller::class, 'update'])->name('divisi.update');
+    Route::delete('/admin/divisi/{id}', [admindivisicontroller::class, 'destroy'])->name('divisi.destroy');
+    Route::get('/admin/datadivisi/create', [admindivisicontroller::class, 'create'])->name('divisi.create');
+    Route::post('/admin/datadivisi', [admindivisicontroller::class, 'store'])->name('divisi.store');
+
+
+    //kategori
+    Route::get('/admin/kategori', [adminkategoricontroller::class, 'index'])->name('kategori');
+    Route::get('/admin/kategori/{id}', [adminkategoricontroller::class, 'edit'])->name('kategori.edit');
+    Route::put('/admin/kategori/{id}', [adminkategoricontroller::class, 'update'])->name('kategori.update');
+    Route::delete('/admin/kategori/{id}', [adminkategoricontroller::class, 'destroy'])->name('kategori.destroy');
+    Route::get('/admin/datakategori/create', [adminkategoricontroller::class, 'create'])->name('kategori.create');
+    Route::post('/admin/datakategori', [adminkategoricontroller::class, 'store'])->name('kategori.store');
+
+
+    //suratmasuk
+    Route::get('/admin/suratmasuk', [adminsuratmasukcontroller::class, 'index'])->name('suratmasuk');
+    Route::get('/admin/suratmasuk/{id}', [adminsuratmasukcontroller::class, 'edit'])->name('suratmasuk.edit');
+    Route::put('/admin/suratmasuk/{id}', [adminsuratmasukcontroller::class, 'update'])->name('suratmasuk.update');
+    Route::delete('/admin/suratmasuk/{id}', [adminsuratmasukcontroller::class, 'destroy'])->name('suratmasuk.destroy');
+    Route::get('/admin/datasuratmasuk/create', [adminsuratmasukcontroller::class, 'create'])->name('suratmasuk.create');
+    Route::post('/admin/datasuratmasuk', [adminsuratmasukcontroller::class, 'store'])->name('suratmasuk.store');
+
+
+    //suratkeluar
+    Route::get('/admin/suratkeluar', [adminsuratkeluarcontroller::class, 'index'])->name('suratkeluar');
+    Route::get('/admin/suratkeluar/{id}', [adminsuratkeluarcontroller::class, 'edit'])->name('suratkeluar.edit');
+    Route::put('/admin/suratkeluar/{id}', [adminsuratkeluarcontroller::class, 'update'])->name('suratkeluar.update');
+    Route::delete('/admin/suratkeluar/{id}', [adminsuratkeluarcontroller::class, 'destroy'])->name('suratkeluar.destroy');
+    Route::get('/admin/datasuratkeluar/create', [adminsuratkeluarcontroller::class, 'create'])->name('suratkeluar.create');
+    Route::post('/admin/datasuratkeluar', [adminsuratkeluarcontroller::class, 'store'])->name('suratkeluar.store');
 
 
     //API
