@@ -46,7 +46,7 @@ Divisi
     <div class="">
       <div class="page-title">
         <div class="title_left">
-          <h3>Users
+          <h3>@yield('title')
         </h3>
         </div>
       </div>
