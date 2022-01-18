@@ -15,6 +15,7 @@ class admindashboardcontroller extends Controller
         if((Auth::user()->tipeuser)=='admin'){
             return view('pages.admin.dashboard.blank',compact('pages'));
         }
+        return view('pages.admin.dashboard.blank',compact('pages'));
     }
 
 }

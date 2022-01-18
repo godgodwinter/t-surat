@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Fungsi;
+use App\Models\divisi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,33 +28,35 @@ class adminuserscontroller extends Controller
     {
         #WAJIB
         $pages='users';
-        $datas=DB::table('users')->where('tipeuser','admin')
-        ->paginate(Fungsi::paginationjml());
+        $datas=User::with('divisi')
+        // ->where('tipeuser','admin')
+        ->paginate();
+        // ->paginate(Fungsi::paginationjml());
 
         return view('pages.admin.users.index',compact('datas','request','pages'));
     }
-    public function cari(Request $request)
-    {
-        $cari=$request->cari;
-        #WAJIB
-        $pages='users';
-        $datas=DB::table('users')
-        ->where('tipeuser','=','admin')
-        ->where('name','like',"%".$cari."%")
-        ->orWhere('email','like',"%".$cari."%")
-        ->where('tipeuser','=','admin')
-        ->orWhere('username','like',"%".$cari."% ")
-        ->where('tipeuser','=','admin')
+    // public function cari(Request $request)
+    // {
+    //     $cari=$request->cari;
+    //     #WAJIB
+    //     $pages='users';
+    //     $datas=DB::table('users')
+    //     ->where('tipeuser','=','admin')
+    //     ->where('name','like',"%".$cari."%")
+    //     ->orWhere('email','like',"%".$cari."%")
+    //     ->where('tipeuser','=','admin')
+    //     ->orWhere('username','like',"%".$cari."% ")
+    //     ->where('tipeuser','=','admin')
 
-        ->paginate(Fungsi::paginationjml());
+    //     ->paginate(Fungsi::paginationjml());
 
-        return view('pages.admin.users.index',compact('datas','request','pages'));
-    }
+    //     return view('pages.admin.users.index',compact('datas','request','pages'));
+    // }
     public function create()
     {
         $pages='users';
-
-        return view('pages.admin.users.create',compact('pages'));
+        $divisi=divisi::get();
+        return view('pages.admin.users.create',compact('pages','divisi'));
     }
 
     public function store(Request $request)
@@ -69,8 +72,8 @@ class adminuserscontroller extends Controller
                     $request->validate([
                     'username'=>'required|unique:users,username',
                     'email'=>'required|unique:users,email',
-                    'password' => 'min:8|required_with:password2|same:password2',
-                    'password2' => 'min:8',
+                    'password' => 'min:3|required_with:password2|same:password2',
+                    'password2' => 'min:3',
 
                     ],
                     [
@@ -82,14 +85,17 @@ class adminuserscontroller extends Controller
             $request->validate([
                 'name'=>'required',
                 'username'=>'required',
-                'password' => 'min:8|required_with:password2|same:password2',
-                'password2' => 'min:8',
+                'password' => 'min:3|required_with:password2|same:password2',
+                'password2' => 'min:3',
 
             ],
             [
                 'nama.nama'=>'Nama harus diisi',
             ]);
-
+            $divisi=null;
+        if($request->tipeuser==='divisi'){
+            $divisi=$request->divisi;
+        }
             DB::table('users')->insert(
                 array(
                        'name'     =>   $request->name,
@@ -97,7 +103,8 @@ class adminuserscontroller extends Controller
                        'username'     =>   $request->username,
                        'nomerinduk'     => date('YmdHis'),
                        'password' => Hash::make($request->password),
-                       'tipeuser' => 'admin',
+                       'tipeuser' => $request->tipeuser,
+                       'divisi_id' => $divisi,
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));
@@ -112,8 +119,11 @@ class adminuserscontroller extends Controller
     public function edit(User $id)
     {
         $pages='users';
-
-        return view('pages.admin.users.edit',compact('pages','id'));
+        $divisi=divisi::get();
+        $id=User::with('divisi')
+        ->where('id',$id->id)
+        ->first();
+        return view('pages.admin.users.edit',compact('pages','id','divisi'));
     }
     public function update(User $id,Request $request)
     {
@@ -136,12 +146,17 @@ class adminuserscontroller extends Controller
             'name.required'=>'name harus diisi',
         ]);
 
+        $divisi=null;
+        if($request->tipeuser==='divisi' && $request->divisi!=null){
+            $divisi=$request->divisi;
+        }
+
 
         if($request->password!=null OR $request->password!=''){
 
         $request->validate([
-            'password' => 'min:8|required_with:password2|same:password2',
-            'password2' => 'min:8',
+            'password' => 'min:3|required_with:password2|same:password2',
+            'password2' => 'min:3',
         ],
         [
             'nama.required'=>'nama harus diisi',
@@ -152,14 +167,19 @@ class adminuserscontroller extends Controller
                 'username'     =>   $request->username,
                 'email'     =>   $request->email,
                 'password' => Hash::make($request->password),
+                'tipeuser'     =>   $request->tipeuser,
+                'divisi_id' => $divisi,
                'updated_at'=>date("Y-m-d H:i:s")
             ]);
+
         }else{
             User::where('id',$id->id)
             ->update([
                 'name'     =>   $request->name,
                 'username'     =>   $request->username,
                 'email'     =>   $request->email,
+                'tipeuser'     =>   $request->tipeuser,
+                'divisi_id' => $divisi,
                'updated_at'=>date("Y-m-d H:i:s")
             ]);
 

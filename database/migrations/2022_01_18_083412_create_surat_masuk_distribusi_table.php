@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePenilaiandetailTable extends Migration
+class CreateSuratMasukDistribusiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreatePenilaiandetailTable extends Migration
      */
     public function up()
     {
-        Schema::create('penilaiandetail', function (Blueprint $table) {
+        Schema::create('surat_masuk_distribusi', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('prosespenilaian_id')->nullable();
-            $table->string('penilaian_id');
-            $table->string('nilai');
+            $table->string('surat_masuk_id');
+            $table->string('divisi_id');
+            $table->string('users_id')->nullable(); //jika kosong maka ke smua  users divisi tersebut
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreatePenilaiandetailTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penilaiandetail');
+        Schema::dropIfExists('surat_masuk_distribusi');
     }
 }

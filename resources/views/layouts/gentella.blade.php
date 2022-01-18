@@ -30,8 +30,8 @@
                 <img src="{{asset('assets/img/avatar/avatar-1.png')}}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>John Doe</h2>
+                <span>Selamat Datang,</span>
+                <h2>{{ Auth::user()->name }}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -81,7 +81,7 @@
                       <img src="{{asset('assets/img/avatar/avatar-1.png')}}" alt="">{{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item"  href="javascript:;">
+                      <a class="dropdown-item"  href="{{route('settings')}}">
                         <span class="badge bg-red pull-right">Edit</span>Profile</a>
 
                     {{-- <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger"

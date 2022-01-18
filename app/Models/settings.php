@@ -20,8 +20,5 @@ class settings extends Model
         'lembaga_telp',
         'lembaga_kota',
         'lembaga_logo',
-        'wa_status',
-        'wa_linkon',
-        'wa_linkoff',
     ];
 }

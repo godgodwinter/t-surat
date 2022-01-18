@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePosisiseleksiTable extends Migration
+class CreateSuratKeluarDistribusiTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreatePosisiseleksiTable extends Migration
      */
     public function up()
     {
-        Schema::create('posisiseleksi', function (Blueprint $table) {
+        Schema::create('surat_keluar_distribusi', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('posisipemain_id');
-            $table->string('tahunpenilaian_id');
+            $table->string('surat_keluar_id');
+            $table->string('divisi_id');
+            $table->string('users_id')->nullable(); //jika kosong maka ke smua  users divisi tersebut
             $table->softDeletes();
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ class CreatePosisiseleksiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posisiseleksi');
+        Schema::dropIfExists('surat_keluar_distribusi');
     }
 }

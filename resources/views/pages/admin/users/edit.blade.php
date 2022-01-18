@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.gentella')
 
 @section('title')
 Administrator
@@ -13,87 +13,125 @@ Administrator
 
 
 @section('content')
-<section class="section">
-    <div class="section-header">
-        <h1>@yield('title')</h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="{{route('users')}}">@yield('title')</a></div>
-            <div class="breadcrumb-item">Tambah</div>
-        </div>
-    </div>
-
-    <div class="section-body">
-        <div class="card">
-            <div class="card-header">
-                <h5>Tambah</h5>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Edit
+                    {{-- <small>different form elements</small> --}}
+                </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a class="dropdown-item" href="#">Settings 1</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
             </div>
-            <div class="card-body">
-
-                <form action="{{route('users.update',$id->id)}}" method="post">
+            <div class="x_content">
+                <br />
+                <form action="{{route('users.update',$id->id)}}" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                     @method('put')
-                    @csrf
+                     @csrf
 
-                    <div class="row">
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Nama Lengkap <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" id="first-name" required="required" class="form-control @error('name') is-invalid @enderror" name="name" value="{{old('name') ? old('name') : $id->name}}">
+                            @error('name')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align @error('username') is-invalid @enderror" for="last-name">Username <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" id="last-name" name="username" required="required" class="form-control" value="{{old('username') ? old('username') : $id->username}}">
+                            @error('username')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Email <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="email" id="last-name" name="email" required="required" class="form-control @error('email') is-invalid @enderror" value="{{old('email') ? old('email') : $id->email}}">
+                            @error('email')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Password <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="password" id="last-name" name="password"  class="form-control @error('password') is-invalid @enderror">
+                            @error('password')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Konfirmasi Password <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="password" id="last-name" name="password2" class="form-control @error('password2') is-invalid @enderror">
+                            @error('password2')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Hak Akses <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select id="heard" class="form-control @error('tipeuser') is-invalid @enderror" required name="tipeuser">
+                                <option>{{$id->tipeuser}}</option>
+                                <option value="">Pilih Hak Akses ...</option>
+                                <option value="admin">Admin</option>
+                                <option value="divisi">Divisi</option>
+                                <option value="direksi">Direksi</option>
+                            </select>
+                            @error('tipeuser')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Divisi <span class="required">*jika bukan Hak Akses Divisi data akan di kosongkan</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select id="heard" class="form-control @error('divisi') is-invalid @enderror" required name="divisi">
+                                <option>{{$id->divisi_id}}</option>
+                                <option value="">Pilih Divisi ...</option>
+                                @forelse ($divisi as $item)
+                                <option value="{{$item->id}}">{{$item->nama}}</option>
+                                @empty
 
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="name">name Lengkap <code>*)</code></label>
-                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name') ? old('name') : $id->name}}" required>
-                        @error('name')<div class="invalid-feedback"> {{$message}}</div>
-                        @enderror
+                                @endforelse
+                            </select>
+                            @error('divisi')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="item form-group">
+                        <div class="col-md-6 col-sm-6 offset-md-3">
+                            <a class="btn btn-dark" type="button" href="{{route('users')}}">Batal</a>
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                        </div>
                     </div>
 
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="username">Username<code></code></label>
-
-                        <input type="text" class="form-control  @error('username') is-invalid @enderror" name="username" required  value="{{old('username') ? old('username') : $id->username}}">
-
-                        @error('username')<div class="invalid-feedback"> {{$message}}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="email">Email<code></code></label>
-
-                        <input type="text" class="form-control  @error('email') is-invalid @enderror" name="email" required  value="{{old('email') ? old('email') : $id->email}}">
-
-                        @error('email')<div class="invalid-feedback"> {{$message}}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="password">Password<code></code></label>
-
-
-                        <input type="password" class="form-control  @error('password') is-invalid @enderror" name="password" >
-
-                        @error('password')<div class="invalid-feedback"> {{$message}}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                        <label for="password2">Konfirmasi Password<code></code></label>
-
-
-                        <input type="password" class="form-control  @error('password2') is-invalid @enderror" name="password2" >
-
-                        @error('password2')<div class="invalid-feedback"> {{$message}}</div>
-                        @enderror
-                    </div>
-
-
-
-
-                    </div>
-
-                    <div class="card-footer text-right mr-5">
-                        <button class="btn btn-primary">Simpan</button>
-                    </div>
                 </form>
-
-
             </div>
         </div>
     </div>
-</section>
+</div>
+
 @endsection

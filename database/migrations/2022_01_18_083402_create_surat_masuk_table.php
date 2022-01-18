@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTahunpenilaianTable extends Migration
+class CreateSuratMasukTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateTahunpenilaianTable extends Migration
      */
     public function up()
     {
-        Schema::create('tahunpenilaian', function (Blueprint $table) {
+        Schema::create('surat_masuk', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
+            $table->string('tgl_arsip');
+            $table->string('perihal');
+            $table->string('surat_kategori_id');
+            $table->string('lampiran');
+            $table->string('file');
+            $table->string('users_id');
             $table->string('status')->nullable();
-            $table->string('jml')->nullable();
-            $table->string('ket')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +34,6 @@ class CreateTahunpenilaianTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tahunpenilaian');
+        Schema::dropIfExists('surat_masuk');
     }
 }

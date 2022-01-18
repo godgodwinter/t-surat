@@ -6,24 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class prosespenilaian extends Model
+class surat_kategori extends Model
 {
-        public $table = "prosespenilaian";
+        public $table = "surat_kategori";
 
         use SoftDeletes;
         use HasFactory;
 
         protected $fillable = [
             'nama',
-            'tgl',
-            'tahunpenilaian_id',
         ];
-
-
-        public function tahunpenilaian()
-        {
-            return $this->belongsTo('App\Models\tahunpenilaian');
-        }
-
 
 }

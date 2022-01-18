@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProsespenilaianTable extends Migration
+class CreateSuratKeluarTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateProsespenilaianTable extends Migration
      */
     public function up()
     {
-        Schema::create('prosespenilaian', function (Blueprint $table) {
+        Schema::create('surat_keluar', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('tahunpenilaian_id');
             $table->string('tgl');
-            $table->string('nama');
+            $table->string('perihal');
+            $table->string('konten');
+            $table->string('divisi_id');
+            $table->string('users_id');
+            $table->string('status');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +33,6 @@ class CreateProsespenilaianTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prosespenilaian');
+        Schema::dropIfExists('surat_keluar');
     }
 }
