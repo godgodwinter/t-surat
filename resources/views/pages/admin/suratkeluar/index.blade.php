@@ -1,7 +1,7 @@
 @extends('layouts.gentella')
 
 @section('title')
-Surat Masuk
+Surat Keluar
 @endsection
 
 @push('before-script')
@@ -57,7 +57,7 @@ Surat Masuk
         <div class="col-md-12 col-sm-12 ">
           <div class="x_panel">
             <div class="x_title">
-              <a class="btn btn-sm btn-primary" href="{{route('suratmasuk.create')}}"> Tambah </a>
+              <a class="btn btn-sm btn-primary" href="{{route('suratkeluar.create')}}"> Tambah </a>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -82,7 +82,7 @@ Surat Masuk
                     <th>Tujuan / Penerima</th>
                     <th>File</th>
                     <th>Status</th>
-                    <th>Uploaded By</th>
+                    <th>Created By</th>
                     <th class="text-center">Aksi</th>
                   </tr>
                 </thead>
@@ -92,7 +92,7 @@ Surat Masuk
                     @forelse ($datas as $data)
                   <tr>
                     <td class="text-center">{{$loop->index+1}}</td>
-                    <td>{{Fungsi::tanggalindo($data->tgl)}}</td>
+                    <td>{{Fungsi::tanggalindo($data->tgl_arsip)}}</td>
                     <td>{{$data->perihal}}</td>
                     <td>-</td>
                     @php
@@ -112,8 +112,8 @@ Surat Masuk
                     <td><button class="btn btn-{{$warna}} btn-sm">{{ucfirst($status)}}</button></td>
                     <td>{{$creator}}</td>
                     <td class="babeng-min-row">
-{{-- <x-button-edit link="{{route('suratmasuk.edit',$data->id)}}" /> --}}
-<x-button-delete link="{{route('suratmasuk.destroy',$data->id)}}" />
+{{-- <x-button-edit link="{{route('suratkeluar.edit',$data->id)}}" /> --}}
+<x-button-delete link="{{route('suratkeluar.destroy',$data->id)}}" />
                     </td>
                   </tr>
                     @empty

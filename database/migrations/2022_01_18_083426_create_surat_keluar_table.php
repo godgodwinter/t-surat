@@ -17,7 +17,7 @@ class CreateSuratKeluarTable extends Migration
             $table->bigIncrements('id');
             $table->string('tgl');
             $table->string('perihal');
-            $table->string('konten');
+            $table->text('konten');
             $table->string('divisi_id');
             $table->string('users_id');
             $table->string('status');

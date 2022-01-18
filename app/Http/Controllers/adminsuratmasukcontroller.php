@@ -90,5 +90,11 @@ class adminsuratmasukcontroller extends Controller
             ));
     return redirect()->route('suratmasuk')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
     }
+    public function destroy(surat_masuk $id){
+
+        surat_masuk::destroy($id->id);
+        return redirect()->route('suratmasuk')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+
+    }
 
 }
