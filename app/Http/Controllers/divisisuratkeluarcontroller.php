@@ -8,9 +8,8 @@ use App\Models\surat_keluar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use PDF;
 
-class adminsuratkeluarcontroller extends Controller
+class divisisuratkeluarcontroller extends Controller
 {
     public function index(Request $request)
     {
@@ -18,14 +17,14 @@ class adminsuratkeluarcontroller extends Controller
         $pages='suratkeluar';
         $datas=surat_keluar::orderBy('tgl','desc')
         ->paginate();
-        return view('pages.admin.suratkeluar.index',compact('datas','request','pages'));
+        return view('pages.divisi.suratkeluar.index',compact('datas','request','pages'));
     }
     public function create()
     {
         $pages='suratkeluar';
         $kategori=kategori::where('prefix','suratkeluar')->get();
         $divisi=divisi::get();
-        return view('pages.admin.suratkeluar.create',compact('pages','kategori','divisi'));
+        return view('pages.divisi.suratkeluar.create',compact('pages','kategori','divisi'));
     }
     public function store(Request $request)
     {
@@ -64,27 +63,7 @@ class adminsuratkeluarcontroller extends Controller
                 ));
                 }
             }
-    return redirect()->route('suratkeluar')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('divisi.suratkeluar')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
         // dd($request);
-    }
-
-    public function cetak(surat_keluar $id){
-        // dd($id);
-        $tgl=date("YmdHis");
-        $pdf = PDF::loadview('pages.admin.suratkeluar.cetak',compact('id'))->setPaper('a4', 'landscape');
-        return $pdf->stream('surat'.$tgl.'-pdf');
-    }
-
-    public function cetakperdivisi(surat_keluar $id,divisi $divisi){
-        // dd($id,$divisi);
-        $tgl=date("YmdHis");
-        $pdf = PDF::loadview('pages.admin.suratkeluar.cetakperdivisi',compact('id','divisi'))->setPaper('a4', 'landscape');
-        return $pdf->stream('surat'.$tgl.'-pdf');
-    }
-    public function destroy(surat_keluar $id){
-
-        surat_keluar::destroy($id->id);
-        return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
-
     }
 }

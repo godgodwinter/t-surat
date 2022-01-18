@@ -27,6 +27,8 @@ use App\Http\Controllers\admintahunpenilaiandetailcontroller;
 use App\Http\Controllers\adminuserscontroller;
 use App\Http\Controllers\direksisuratkeluarcontroller;
 use App\Http\Controllers\direksisuratmasukcontroller;
+use App\Http\Controllers\divisisuratkeluarcontroller;
+use App\Http\Controllers\divisisuratmasukcontroller;
 use App\Http\Controllers\landingcontroller;
 use App\Http\Controllers\pelatihtahunpenilaiancontroller;
 use App\Http\Controllers\pemaintahunpenilaiancontroller;
@@ -123,10 +125,21 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::post('/admin/seeder/hard', [adminseedercontroller::class, 'hard'])->name('seeder.hard');
 
 
+    //divisimenu
+    Route::get('/divisi/suratmasuk', [divisisuratmasukcontroller::class, 'index'])->name('divisi.suratmasuk');
+    Route::get('/divisi/datasuratmasuk/create', [divisisuratmasukcontroller::class, 'create'])->name('divisi.suratmasuk.create');
+    Route::post('/divisi/datasuratmasuk', [divisisuratmasukcontroller::class, 'store'])->name('divisi.suratmasuk.store');
+
+    Route::get('/divisi/suratkeluar', [divisisuratkeluarcontroller::class, 'index'])->name('divisi.suratkeluar');
+    Route::get('/divisi/datasuratkeluar/create', [divisisuratkeluarcontroller::class, 'create'])->name('divisi.suratkeluar.create');
+    Route::post('/divisi/datasuratkeluar', [divisisuratkeluarcontroller::class, 'store'])->name('divisi.suratkeluar.store');
+
+
     //direksimenu
     Route::get('/direksi/suratmasuk', [direksisuratmasukcontroller::class, 'index'])->name('direksi.suratmasuk');
     Route::get('/direksi/suratmasuk/acc/{id}', [direksisuratmasukcontroller::class, 'acc'])->name('direksi.suratmasuk.acc');
     Route::get('/direksi/suratmasuk/dec/{id}', [direksisuratmasukcontroller::class, 'dec'])->name('direksi.suratmasuk.dec');
+
     Route::get('/direksi/suratkeluar', [direksisuratkeluarcontroller::class, 'index'])->name('direksi.suratkeluar');
     Route::get('/direksi/suratkeluar/acc/{id}', [direksisuratkeluarcontroller::class, 'acc'])->name('direksi.suratkeluar.acc');
     Route::get('/direksi/suratkeluar/dec/{id}', [direksisuratkeluarcontroller::class, 'dec'])->name('direksi.suratkeluar.dec');

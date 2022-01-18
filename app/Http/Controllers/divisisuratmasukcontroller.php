@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\divisi;
 use App\Models\kategori;
+use App\Models\surat_keluar;
 use App\Models\surat_masuk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class adminsuratmasukcontroller extends Controller
+class divisisuratmasukcontroller extends Controller
 {
     public function index(Request $request)
     {
@@ -17,14 +18,14 @@ class adminsuratmasukcontroller extends Controller
         $pages='suratmasuk';
         $datas=surat_masuk::orderBy('tgl_arsip','desc')
         ->paginate();
-        return view('pages.admin.suratmasuk.index',compact('datas','request','pages'));
+        return view('pages.divisi.suratmasuk.index',compact('datas','request','pages'));
     }
     public function create()
     {
         $pages='suratmasuk';
         $kategori=kategori::where('prefix','suratmasuk')->get();
         $divisi=divisi::get();
-        return view('pages.admin.suratmasuk.create',compact('pages','kategori','divisi'));
+        return view('pages.divisi.suratmasuk.create',compact('pages','kategori','divisi'));
     }
     public function store(Request $request)
     {
@@ -106,13 +107,6 @@ class adminsuratmasukcontroller extends Controller
             }
 
 
-    return redirect()->route('suratmasuk')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('divisi.suratmasuk')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
     }
-    public function destroy(surat_masuk $id){
-
-        surat_masuk::destroy($id->id);
-        return redirect()->back()->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
-
-    }
-
 }
