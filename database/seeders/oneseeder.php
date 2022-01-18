@@ -58,12 +58,29 @@ class oneseeder extends Seeder
 
 
           $divisi_id=DB::table('divisi')->insertGetId([
-              'nama' =>  'HRD',
+              'nama' =>  'Personalia',
               'created_at' => Carbon::now(),
               'updated_at' => Carbon::now()
           ]);
 
 
+        DB::table('divisi')->insertGetId([
+            'nama' =>  'administrasi',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        DB::table('divisi')->insertGetId([
+            'nama' =>  'produksi',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        DB::table('divisi')->insertGetId([
+            'nama' =>  'pemasaran',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
 
           $nama='Paimin';
           $nomerinduk='123';
