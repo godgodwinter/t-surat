@@ -1,7 +1,7 @@
 @extends('layouts.gentella')
 
 @section('title')
-Surat Masuk
+Surat Keluar
 @endsection
 
 @push('before-script')
@@ -57,7 +57,7 @@ Surat Masuk
         <div class="col-md-12 col-sm-12 ">
           <div class="x_panel">
             <div class="x_title">
-              <a class="btn btn-sm btn-primary" href="{{route('suratmasuk.create')}}"> Tambah </a>
+              <a class="btn btn-sm btn-primary" href="{{route('suratkeluar.create')}}"> Tambah </a>
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -80,9 +80,10 @@ Surat Masuk
                     <th>Tanggal Arsip</th>
                     <th>Perihal</th>
                     <th>Tujuan / Penerima</th>
-                    <th>File</th>
+                    {{-- <th>File</th> --}}
                     <th>Status</th>
-                    <th>Penerima Surat</th>
+                    <th>Divisi Mengeluarkan Surat</th>
+                    <th>Created By</th>
                     <th class="text-center">Aksi</th>
                   </tr>
                 </thead>
@@ -92,41 +93,44 @@ Surat Masuk
                     @forelse ($datas as $data)
                   <tr>
                     <td class="text-center">{{$loop->index+1}}</td>
-                    <td>{{Fungsi::tanggalindo($data->tgl_arsip)}}</td>
-                    {{-- <td>{{$data->tgl_arsip}}</td> --}}
+                    <td>{{Fungsi::tanggalindo($data->tgl)}}</td>
                     <td>{{$data->perihal}}</td>
                     <td>
                         @php
-                            $gettujuan=\App\Models\surat_masuk_distribusi::with('divisi')->where('surat_masuk_id',$data->id)->get();
+                            $gettujuan=\App\Models\surat_keluar_distribusi::with('divisi')->where('surat_keluar_id',$data->id)->get();
                         @endphp
                         @forelse ($gettujuan as $item)
-                            <button class="btn btn-info btn-sm">{{$item->divisi!=null?$item->divisi->nama:'Divisi tidak ditemukan'}}</button>
+                            <a  href="{{route('suratkeluar.cetakperdivisi',[$data->id,$item->divisi_id])}}" class="btn btn-info btn-sm">{{$item->divisi!=null?$item->divisi->nama:'Divisi tidak ditemukan'}}</a>
                         @empty
 
                         @endforelse
                     </td>
+                    {{-- <td><a href="{{route('suratkeluar.cetak',$data->id)}}" class="btn btn-sm btn-info btn-rounded">Download</a></td> --}}
+                    @php
+                    $status='waiting';
+                    $warna='secondary';
+                    if($data->status=='dec'){
+                        $warna='danger';
+                        $status='Ditolak/Dibatalkan';
+                    }elseif($data->status=='ok'){
+                        $warna='success';
+                        $status='Ok';
+                    }
+                @endphp
+                    <td><button class="btn btn-{{$warna}} btn-sm">{{ucfirst($status)}}</button></td>
                     @php
                         $creator='-';
+                        $divisi_nama='-';
                         $getcreator=\App\Models\User::where('id',$data->users_id)->first();
                         $creator=$getcreator->name;
+                        $getdivisi=\App\Models\divisi::where('id',$data->divisi_id)->first();
+                        $divisi_nama=$getdivisi->nama;
                     @endphp
-                    <td><a href="{{asset($data->file)}}" class="btn btn-sm btn-info btn-rounded">Download</a></td>
-                    @php
-                        $status='waiting';
-                        $warna='secondary';
-                        if($data->status=='dec'){
-                            $warna='danger';
-                            $status='Ditolak/Dibatalkan';
-                        }elseif($data->status=='ok'){
-                            $warna='success';
-                            $status='Ok';
-                        }
-                    @endphp
-                    <td><button class="btn btn-{{$warna}} btn-sm">{{ucfirst($status)}}</button></td>
+                    <td>{{$divisi_nama}}</td>
                     <td>{{$creator}}</td>
                     <td class="babeng-min-row">
-{{-- <x-button-edit link="{{route('suratmasuk.edit',$data->id)}}" /> --}}
-<x-button-delete link="{{route('suratmasuk.destroy',$data->id)}}" />
+                        <a href="{{route('direksi.suratkeluar.acc',$data->id)}}" class="btn btn-success btn-sm">Accept</a>
+                        <a  href="{{route('direksi.suratkeluar.dec',$data->id)}}" class="btn btn-danger btn-sm">Decline</a>
                     </td>
                   </tr>
                     @empty

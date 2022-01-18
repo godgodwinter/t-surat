@@ -125,8 +125,8 @@ Surat Masuk
                     <td><button class="btn btn-{{$warna}} btn-sm">{{ucfirst($status)}}</button></td>
                     <td>{{$creator}}</td>
                     <td class="babeng-min-row">
-{{-- <x-button-edit link="{{route('suratmasuk.edit',$data->id)}}" /> --}}
-<x-button-delete link="{{route('suratmasuk.destroy',$data->id)}}" />
+                            <a href="{{route('direksi.suratmasuk.acc',$data->id)}}" class="btn btn-success btn-sm">Accept</a>
+                            <a  href="{{route('direksi.suratmasuk.dec',$data->id)}}" class="btn btn-danger btn-sm">Decline</a>
                     </td>
                   </tr>
                     @empty

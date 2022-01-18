@@ -81,4 +81,10 @@ class adminsuratkeluarcontroller extends Controller
         $pdf = PDF::loadview('pages.admin.suratkeluar.cetakperdivisi',compact('id','divisi'))->setPaper('a4', 'landscape');
         return $pdf->stream('surat'.$tgl.'-pdf');
     }
+    public function destroy(surat_keluar $id){
+
+        surat_keluar::destroy($id->id);
+        return redirect()->route('suratkeluar')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+
+    }
 }

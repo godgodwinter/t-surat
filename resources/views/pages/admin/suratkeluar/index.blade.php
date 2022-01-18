@@ -107,13 +107,16 @@ Surat Keluar
                     </td>
                     {{-- <td><a href="{{route('suratkeluar.cetak',$data->id)}}" class="btn btn-sm btn-info btn-rounded">Download</a></td> --}}
                     @php
-                        $status='waiting';
-                        $warna='secondary';
-                        if($data->status!='waiting'){
-                            $warna='warning';
-                            $status=$data->status;
-                        }
-                    @endphp
+                    $status='waiting';
+                    $warna='secondary';
+                    if($data->status=='dec'){
+                        $warna='danger';
+                        $status='Ditolak/Dibatalkan';
+                    }elseif($data->status=='ok'){
+                        $warna='success';
+                        $status='Ok';
+                    }
+                @endphp
                     <td><button class="btn btn-{{$warna}} btn-sm">{{ucfirst($status)}}</button></td>
                     @php
                         $creator='-';

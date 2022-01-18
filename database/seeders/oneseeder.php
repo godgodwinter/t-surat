@@ -81,7 +81,7 @@ class oneseeder extends Seeder
 
 
           $users_id=DB::table('users')->insertGetId([
-            'name' =>  'Pijo',
+            'name' =>  'Paijo',
             'email' => $faker->unique()->email,
             'username'=>'direksi',
             'nomerinduk'=>'99',

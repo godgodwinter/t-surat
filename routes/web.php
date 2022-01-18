@@ -25,6 +25,8 @@ use App\Http\Controllers\adminsuratmasukcontroller;
 use App\Http\Controllers\admintahunpenilaiancontroller;
 use App\Http\Controllers\admintahunpenilaiandetailcontroller;
 use App\Http\Controllers\adminuserscontroller;
+use App\Http\Controllers\direksisuratkeluarcontroller;
+use App\Http\Controllers\direksisuratmasukcontroller;
 use App\Http\Controllers\landingcontroller;
 use App\Http\Controllers\pelatihtahunpenilaiancontroller;
 use App\Http\Controllers\pemaintahunpenilaiancontroller;
@@ -121,6 +123,13 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::post('/admin/seeder/hard', [adminseedercontroller::class, 'hard'])->name('seeder.hard');
 
 
+    //direksimenu
+    Route::get('/direksi/suratmasuk', [direksisuratmasukcontroller::class, 'index'])->name('direksi.suratmasuk');
+    Route::get('/direksi/suratmasuk/acc/{id}', [direksisuratmasukcontroller::class, 'acc'])->name('direksi.suratmasuk.acc');
+    Route::get('/direksi/suratmasuk/dec/{id}', [direksisuratmasukcontroller::class, 'dec'])->name('direksi.suratmasuk.dec');
+    Route::get('/direksi/suratkeluar', [direksisuratkeluarcontroller::class, 'index'])->name('direksi.suratkeluar');
+    Route::get('/direksi/suratkeluar/acc/{id}', [direksisuratkeluarcontroller::class, 'acc'])->name('direksi.suratkeluar.acc');
+    Route::get('/direksi/suratkeluar/dec/{id}', [direksisuratkeluarcontroller::class, 'dec'])->name('direksi.suratkeluar.dec');
 
 
 });
