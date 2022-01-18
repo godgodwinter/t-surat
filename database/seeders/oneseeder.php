@@ -58,7 +58,7 @@ class oneseeder extends Seeder
 
 
           $divisi_id=DB::table('divisi')->insertGetId([
-              'nama' =>  'Personalia',
+              'nama' =>  'personalia',
               'created_at' => Carbon::now(),
               'updated_at' => Carbon::now()
           ]);
@@ -87,9 +87,9 @@ class oneseeder extends Seeder
           $users_id=DB::table('users')->insertGetId([
               'name' =>  $nama,
               'email' => $faker->unique()->email,
-              'username'=>'humas',
+              'username'=>'personalia',
               'nomerinduk'=>$nomerinduk,
-              'password' => Hash::make('humas'),
+              'password' => Hash::make('personalia'),
               'tipeuser' => 'divisi',
               'divisi_id' => $divisi_id,
               'created_at' => Carbon::now(),

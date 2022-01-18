@@ -67,9 +67,9 @@ Beranda
 
             <div class="col-md-4">
                 <h5>Sebagai : Divisi</h5>
-                <label  for="inputPhone">Username : humas</label>
+                <label  for="inputPhone">Username : personalia</label>
                 <br>
-                <label  for="inputPhone">Password : humas</label>
+                <label  for="inputPhone">Password : personalia</label>
             </div>
 
             <div class="col-md-4">
