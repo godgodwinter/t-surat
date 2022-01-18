@@ -19,4 +19,8 @@ class surat_keluar_distribusi extends Model
             'users_id',
         ];
 
+        public function divisi()
+        {
+            return $this->belongsTo('App\Models\divisi');
+        }
 }

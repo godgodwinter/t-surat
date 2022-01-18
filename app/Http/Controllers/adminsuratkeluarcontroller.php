@@ -29,6 +29,7 @@ class adminsuratkeluarcontroller extends Controller
     }
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'tgl'=>'required',
             'perihal'=>'required',
@@ -37,7 +38,7 @@ class adminsuratkeluarcontroller extends Controller
             'tgl.required'=>'Nama Harus diisi',
 
         ]);
-        DB::table('surat_keluar')->insert(
+        $surat_id=DB::table('surat_keluar')->insertGetId(
             array(
                    'tgl'     =>   $request->tgl,
                    'perihal'     =>   $request->perihal,
@@ -49,6 +50,20 @@ class adminsuratkeluarcontroller extends Controller
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
             ));
+
+            if(count($request->tujuan)>0){
+                for($i=0;$i<count($request->tujuan);$i++){
+                    // dd($request->tujuan[$i]);
+            DB::table('surat_keluar_distribusi')->insert(
+                array(
+                       'surat_keluar_id'     =>   $surat_id,
+                       'divisi_id'     =>   $request->tujuan[$i],
+                        'users_id' => null,
+                       'created_at'=>date("Y-m-d H:i:s"),
+                       'updated_at'=>date("Y-m-d H:i:s")
+                ));
+                }
+            }
     return redirect()->route('suratkeluar')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
         // dd($request);
     }
@@ -57,6 +72,13 @@ class adminsuratkeluarcontroller extends Controller
         // dd($id);
         $tgl=date("YmdHis");
         $pdf = PDF::loadview('pages.admin.suratkeluar.cetak',compact('id'))->setPaper('a4', 'landscape');
+        return $pdf->stream('surat'.$tgl.'-pdf');
+    }
+
+    public function cetakperdivisi(surat_keluar $id,divisi $divisi){
+        // dd($id,$divisi);
+        $tgl=date("YmdHis");
+        $pdf = PDF::loadview('pages.admin.suratkeluar.cetakperdivisi',compact('id','divisi'))->setPaper('a4', 'landscape');
         return $pdf->stream('surat'.$tgl.'-pdf');
     }
 }

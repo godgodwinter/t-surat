@@ -80,7 +80,7 @@ Surat Keluar
                     <th>Tanggal Arsip</th>
                     <th>Perihal</th>
                     <th>Tujuan / Penerima</th>
-                    <th>File</th>
+                    {{-- <th>File</th> --}}
                     <th>Status</th>
                     <th>Divisi Mengeluarkan Surat</th>
                     <th>Created By</th>
@@ -95,8 +95,17 @@ Surat Keluar
                     <td class="text-center">{{$loop->index+1}}</td>
                     <td>{{Fungsi::tanggalindo($data->tgl)}}</td>
                     <td>{{$data->perihal}}</td>
-                    <td>-</td>
-                    <td><a href="{{route('suratkeluar.cetak',$data->id)}}" class="btn btn-sm btn-info btn-rounded">Download</a></td>
+                    <td>
+                        @php
+                            $gettujuan=\App\Models\surat_keluar_distribusi::with('divisi')->where('surat_keluar_id',$data->id)->get();
+                        @endphp
+                        @forelse ($gettujuan as $item)
+                            <a  href="{{route('suratkeluar.cetakperdivisi',[$data->id,$item->divisi_id])}}" class="btn btn-info btn-sm">{{$item->divisi!=null?$item->divisi->nama:'Divisi tidak ditemukan'}}</a>
+                        @empty
+
+                        @endforelse
+                    </td>
+                    {{-- <td><a href="{{route('suratkeluar.cetak',$data->id)}}" class="btn btn-sm btn-info btn-rounded">Download</a></td> --}}
                     @php
                         $status='waiting';
                         $warna='secondary';

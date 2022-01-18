@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\divisi;
 use App\Models\kategori;
 use App\Models\surat_masuk;
 use Illuminate\Http\Request;
@@ -22,10 +23,12 @@ class adminsuratmasukcontroller extends Controller
     {
         $pages='suratmasuk';
         $kategori=kategori::where('prefix','suratmasuk')->get();
-        return view('pages.admin.suratmasuk.create',compact('pages','kategori'));
+        $divisi=divisi::get();
+        return view('pages.admin.suratmasuk.create',compact('pages','kategori','divisi'));
     }
     public function store(Request $request)
     {
+        // dd($request,count($request->tujuan));
         $request->validate([
             'tgl_arsip'=>'required',
             'perihal'=>'required',
@@ -75,7 +78,7 @@ class adminsuratmasukcontroller extends Controller
                 $namafileku="suratmasuk/".$namafilebaru.'.'.$file->getClientOriginalExtension();
             }
 
-        DB::table('surat_masuk')->insert(
+        $surat_masuk_id=DB::table('surat_masuk')->insertGetId(
             array(
                    'tgl_arsip'     =>   $request->tgl_arsip,
                    'perihal'     =>   $request->perihal,
@@ -87,6 +90,22 @@ class adminsuratmasukcontroller extends Controller
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
             ));
+
+            if(count($request->tujuan)>0){
+                for($i=0;$i<count($request->tujuan);$i++){
+                    // dd($request->tujuan[$i]);
+            DB::table('surat_masuk_distribusi')->insert(
+                array(
+                       'surat_masuk_id'     =>   $surat_masuk_id,
+                       'divisi_id'     =>   $request->tujuan[$i],
+                        'users_id' => null,
+                       'created_at'=>date("Y-m-d H:i:s"),
+                       'updated_at'=>date("Y-m-d H:i:s")
+                ));
+                }
+            }
+
+
     return redirect()->route('suratmasuk')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
     }
     public function destroy(surat_masuk $id){

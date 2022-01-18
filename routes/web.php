@@ -97,6 +97,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/datasuratkeluar/create', [adminsuratkeluarcontroller::class, 'create'])->name('suratkeluar.create');
     Route::post('/admin/datasuratkeluar', [adminsuratkeluarcontroller::class, 'store'])->name('suratkeluar.store');
     Route::get('/admin/datasuratkeluar/cetak/{id}', [adminsuratkeluarcontroller::class, 'cetak'])->name('suratkeluar.cetak');
+    Route::get('/admin/datasuratkeluar/cetakperdivisi/{id}/{divisi}', [adminsuratkeluarcontroller::class, 'cetakperdivisi'])->name('suratkeluar.cetakperdivisi');
 
 
     //API
@@ -107,6 +108,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::get('/admin/api/nilaipersiswa/{prosespenilaian}/{pemainseleksi}/{kriteriadetail}', [adminapicontroller::class, 'nilaipersiswa'])->name('api.nilaipersiswa');
 
 
+    Route::post('admin/cleartemp', 'App\Http\Controllers\prosescontroller@cleartemp')->name('cleartemp');
 
 
     //seeder

@@ -83,6 +83,36 @@ Tambah
                             @enderror
                         </div>
                     </div>
+
+
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Tujuan / Penerima <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select class="js-example-basic-single form-control-sm @error('tujuan')
+                                is-invalid
+                            @enderror" name="tujuan[]"  style="width: 100%" multiple="multiple">
+                                <option disabled  value=""> Pilih Divisi</option>
+                                @foreach ($divisi as $item)
+                                    <option value="{{ $item->id }}"> {{ $item->nama }}</option>
+                                @endforeach
+                              </select>
+                        </div>
+                    </div>
+
+                      <script type="text/javascript">
+                        $(document).ready(function() {
+                            console.log('test');
+                            // In your Javascript (external .js resource or <script> tag)
+                                $(document).ready(function() {
+                                    $('.js-example-basic-single').select2({
+                                        // theme: "classic",
+                                        // allowClear: true,
+                                        width: "resolve"
+                                    });
+                                });
+                        });
+                       </script>
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-6 col-sm-6 offset-md-3">

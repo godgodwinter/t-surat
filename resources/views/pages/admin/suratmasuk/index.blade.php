@@ -95,7 +95,16 @@ Surat Masuk
                     <td>{{Fungsi::tanggalindo($data->tgl_arsip)}}</td>
                     {{-- <td>{{$data->tgl_arsip}}</td> --}}
                     <td>{{$data->perihal}}</td>
-                    <td>-</td>
+                    <td>
+                        @php
+                            $gettujuan=\App\Models\surat_masuk_distribusi::with('divisi')->where('surat_masuk_id',$data->id)->get();
+                        @endphp
+                        @forelse ($gettujuan as $item)
+                            <button class="btn btn-info btn-sm">{{$item->divisi!=null?$item->divisi->nama:'Divisi tidak ditemukan'}}</button>
+                        @empty
+
+                        @endforelse
+                    </td>
                     @php
                         $creator='-';
                         $getcreator=\App\Models\User::where('id',$data->users_id)->first();

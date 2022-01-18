@@ -1,6 +1,6 @@
 
     <!-- jQuery -->
-    <script src="{{asset('/')}}assets/gentella/vendors/jquery/dist/jquery.min.js"></script>
+    {{-- <script src="{{asset('/')}}assets/gentella/vendors/jquery/dist/jquery.min.js"></script> --}}
     <!-- Bootstrap -->
    <script src="{{asset('/')}}assets/gentella/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
