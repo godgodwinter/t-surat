@@ -17,9 +17,10 @@ class CreateSuratMasukTable extends Migration
             $table->bigIncrements('id');
             $table->string('tgl_arsip');
             $table->string('perihal');
-            $table->string('surat_kategori_id');
+            $table->string('kategori_id');
             $table->string('lampiran');
             $table->string('file');
+            // $table->string('divisi_id');
             $table->string('users_id');
             $table->string('status')->nullable();
             $table->softDeletes();

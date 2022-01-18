@@ -16,10 +16,11 @@ class surat_masuk extends Model
         protected $fillable = [
             'tgl_arsip',
             'perihal',
-            'surat_kategori_id',
+            'kategori_id',
             'lampiran',
             'lampiran',
             'upload_file',
+            // 'divisi_id',
             'users_id',
             'status',
         ];
