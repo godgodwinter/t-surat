@@ -2,6 +2,8 @@
 /public/hot
 /data
 /public/materi
+/public/suratmasuk
+/public/suratkeluar
 /public/file_temp
 /public/storage
 /public/storage/framework/laravel-excel
