@@ -82,6 +82,7 @@ Surat Keluar
                     <th>Tujuan / Penerima</th>
                     <th>File</th>
                     <th>Status</th>
+                    <th>Divisi Mengeluarkan Surat</th>
                     <th>Created By</th>
                     <th class="text-center">Aksi</th>
                   </tr>
@@ -92,15 +93,10 @@ Surat Keluar
                     @forelse ($datas as $data)
                   <tr>
                     <td class="text-center">{{$loop->index+1}}</td>
-                    <td>{{Fungsi::tanggalindo($data->tgl_arsip)}}</td>
+                    <td>{{Fungsi::tanggalindo($data->tgl)}}</td>
                     <td>{{$data->perihal}}</td>
                     <td>-</td>
-                    @php
-                        $creator='-';
-                        $getcreator=\App\Models\User::where('id',$data->users_id)->first();
-                        $creator=$getcreator->name;
-                    @endphp
-                    <td><a href="{{asset($data->file)}}" class="btn btn-sm btn-info btn-rounded">Download</a></td>
+                    <td><a href="{{route('suratkeluar.cetak',$data->id)}}" class="btn btn-sm btn-info btn-rounded">Download</a></td>
                     @php
                         $status='waiting';
                         $warna='secondary';
@@ -110,6 +106,15 @@ Surat Keluar
                         }
                     @endphp
                     <td><button class="btn btn-{{$warna}} btn-sm">{{ucfirst($status)}}</button></td>
+                    @php
+                        $creator='-';
+                        $divisi_nama='-';
+                        $getcreator=\App\Models\User::where('id',$data->users_id)->first();
+                        $creator=$getcreator->name;
+                        $getdivisi=\App\Models\divisi::where('id',$data->divisi_id)->first();
+                        $divisi_nama=$getdivisi->nama;
+                    @endphp
+                    <td>{{$divisi_nama}}</td>
                     <td>{{$creator}}</td>
                     <td class="babeng-min-row">
 {{-- <x-button-edit link="{{route('suratkeluar.edit',$data->id)}}" /> --}}

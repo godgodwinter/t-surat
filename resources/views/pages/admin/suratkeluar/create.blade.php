@@ -35,10 +35,26 @@ Tambah
                 <form action="{{route('suratkeluar.store')}}" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                     @csrf
                     <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Divisi Yang Mengeluarkan Surat <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select id="heard" class="form-control @error('divisi_id') is-invalid @enderror" required name="divisi_id">
+                                <option value="">Pilih Divisi ...</option>
+                                @forelse ($divisi as $item)
+                                <option value="{{$item->id}}">{{$item->nama}}</option>
+                                @empty
+
+                                @endforelse
+                            </select>
+                            @error('divisi_id')<div class="invalid-feedback"> {{$message}}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="item form-group">
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Tanggal Arsip <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input name="tgl_arsip" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" value="{{date('Y-m-d')}}">
+                            <input name="tgl" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" value="{{date('Y-m-d')}}">
                             <script>
                                 function timeFunctionLong(input) {
                                     setTimeout(function() {

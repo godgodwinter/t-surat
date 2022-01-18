@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.gentella')
 
 @section('title')
 Pengaturan
@@ -15,18 +15,10 @@ Pengaturan
         <section class="section">
             <div class="section-header">
             <h1>@yield('title')</h1>
-            <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="{{route('dashboard')}}">Dashboard</a></div>
-                {{-- <div class="breadcrumb-item"><a href="#">Layout</a></div> --}}
-                <div class="breadcrumb-item">@yield('title')</div>
-            </div>
             </div>
 
             <div class="section-body">
             <div class="card">
-                <div class="card-header">
-                <h4>Pengaturan Aplikasi</h4>
-                </div>
                 <div class="card-body">
 
                     <form action="/admin/settings/1" method="post" enctype="multipart/form-data">
@@ -49,12 +41,12 @@ Pengaturan
                             @enderror
                         </div>
 
-                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
+                        {{-- <div class="form-group col-md-5 col-5 mt-0 ml-5">
                             <label for="paginationjml">Pagination <code>*)</code></label>
                             <input type="number" name="paginationjml" id="paginationjml" class="form-control @error('paginationjml') is-invalid @enderror" value="{{$datas->paginationjml}}" required min="3" max="100">
                             @error('paginationjml')<div class="invalid-feedback"> {{$message}}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
 
                         </div>
@@ -106,36 +98,7 @@ Pengaturan
                             @enderror
                         </div>
 
-                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                            <label for="wa_status">Notif WA type<code>*)</code></label>
 
-                            <select class="form-control  @error('wa_status') is-invalid @enderror" name="wa_status" required>
-                            @if(old('wa_status'))
-                                <option>{{old('wa_status')}}</option>
-                            @else
-
-                                <option>{{$datas->wa_status?$datas->wa_status:'Offline'}}</option>
-                            @endif
-                                <option>Offline</option>
-                                <option>Online</option>
-                            </select>
-                            @error('jk')<div class="invalid-feedback"> {{$message}}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                            <label for="wa_linkon">Link Online<code>*)</code></label>
-                            <input type="text" name="wa_linkon" id="wa_linkon" class="form-control @error('wa_linkon') is-invalid @enderror" value="{{$datas->wa_linkon?$datas->wa_linkon:'http://localhost:8081/'}}" required >
-                            @error('wa_linkon')<div class="invalid-feedback"> {{$message}}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-md-5 col-5 mt-0 ml-5">
-                            <label for="wa_linkoff">Link Offline<code>*)</code></label>
-                            <input type="text" name="wa_linkoff" id="wa_linkoff" class="form-control @error('wa_linkoff') is-invalid @enderror" value="{{$datas->wa_linkoff?$datas->wa_linkoff:'http://localhost:8081/'}}" required >
-                            @error('wa_linkoff')<div class="invalid-feedback"> {{$message}}</div>
-                            @enderror
-                        </div>
 
 
 
@@ -145,9 +108,9 @@ Pengaturan
             </div>
             <div class="card">
                 <div class="card-header">
-                <h4>Logo</h4>
+                {{-- <h4>Simpan</h4> --}}
                 </div>
-                <div class="card-body">
+                {{-- <div class="card-body"> --}}
 
                     <div class="row">
 
@@ -176,7 +139,7 @@ Pengaturan
                                 </script>
                         @endpush
 
-                                <div class="form-group row mb-4 mt-3">
+                                {{-- <div class="form-group row mb-4 mt-3">
 
                                     <div class="col-sm-6 col-md-6">
                                         <center>
@@ -200,13 +163,13 @@ Pengaturan
                                     @enderror
                                       </div>
                                     </div>
-                                </div>
+                                </div> --}}
                         <div class="card-footer text-right mr-5">
                             <button class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
 
-                </div>
+                {{-- </div> --}}
             </div>
             <div class="card">
                 <div class="card-header">
@@ -214,10 +177,10 @@ Pengaturan
                 </div>
                 <div class="card-body">
 
-                    <form action="{{route('seeder.tahunpenilaian')}}" method="post" class="d-inline">
+                    {{-- <form action="{{route('seeder.tahunpenilaian')}}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-info">Seeder Tahun Seleksi</button>
-                    </form>
+                    </form> --}}
 
 
 
@@ -231,7 +194,7 @@ Pengaturan
                         <button class="btn btn-info">Seeder Kriteria detail</button>
                     </form> --}}
 
-                    <form action="{{route('seeder.posisi')}}" method="post" class="d-inline">
+                    {{-- <form action="{{route('seeder.posisi')}}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-info">Seeder Posisi</button>
                     </form>
@@ -246,18 +209,18 @@ Pengaturan
                     <form action="{{route('seeder.pelatih')}}" method="post" class="d-inline">
                         @csrf
                         <button class="btn btn-info">Seeder Pelatih</button>
-                    </form>
+                    </form> --}}
 
 
 
 
-                    <br>
-                    <br>
+                    {{-- <br>
+                    <br> --}}
 
-                    <form action="{{route('seeder.hard')}}" method="post"  class="d-inline ">
+                    {{-- <form action="{{route('seeder.hard')}}" method="post"  class="d-inline ">
                         @csrf
                         <button class="btn btn-danger">Hard Reset</button>
-                    </form>
+                    </form> --}}
 
                     <form action="{{route('cleartemp')}}" method="post"  class="d-inline ">
                         @csrf

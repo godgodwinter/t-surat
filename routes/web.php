@@ -96,6 +96,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::delete('/admin/suratkeluar/{id}', [adminsuratkeluarcontroller::class, 'destroy'])->name('suratkeluar.destroy');
     Route::get('/admin/datasuratkeluar/create', [adminsuratkeluarcontroller::class, 'create'])->name('suratkeluar.create');
     Route::post('/admin/datasuratkeluar', [adminsuratkeluarcontroller::class, 'store'])->name('suratkeluar.store');
+    Route::get('/admin/datasuratkeluar/cetak/{id}', [adminsuratkeluarcontroller::class, 'cetak'])->name('suratkeluar.cetak');
 
 
     //API
@@ -117,17 +118,6 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
     Route::post('/admin/seeder/posisi', [adminseedercontroller::class, 'posisi'])->name('seeder.posisi');
     Route::post('/admin/seeder/hard', [adminseedercontroller::class, 'hard'])->name('seeder.hard');
 
-    //proseslainlain
-    Route::post('/admin/proses/cleartemp', [adminprosescontroller::class, 'cleartemp'])->name('cleartemp');
-
-
-
-    //menupemain
-    //tahunpenilaian
-    Route::get('/pemain/tahunpenilaian', [pemaintahunpenilaiancontroller::class, 'index'])->name('pemain.tahunpenilaian');
-    Route::get('/pemain/prosesperhitungan/{tahunpenilaian}/cetakhasilpenilaian', [pemaintahunpenilaiancontroller::class, 'cetakhasilpenilaian'])->name('pemain.prosesperhitungan.cetakhasilpenilaian');
-    Route::get('/pemain/prosesperhitungan/{tahunpenilaian}/grafikhasilpenilaian', [pemaintahunpenilaiancontroller::class, 'grafikhasilpenilaian'])->name('pemain.prosesperhitungan.grafikhasilpenilaian');
-
 
 
 
@@ -135,7 +125,3 @@ Route::group(['middleware' => ['auth:web', 'verified']], function() {
 
 
 
-    //menulanding
-    Route::get('/about', [landingcontroller::class, 'about'])->name('landing.about');
-    Route::get('/pemain', [landingcontroller::class, 'pemain'])->name('landing.pemain');
-    Route::get('/pelatih', [landingcontroller::class, 'pelatih'])->name('landing.pelatih');

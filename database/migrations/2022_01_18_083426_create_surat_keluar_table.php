@@ -21,6 +21,7 @@ class CreateSuratKeluarTable extends Migration
             $table->string('divisi_id');
             $table->string('users_id');
             $table->string('status');
+            $table->string('kategori_id');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -43,15 +43,15 @@ class adminsettingscontroller extends Controller
         ->update([
             'app_nama' => $request->app_nama,
             'app_namapendek' => $request->app_namapendek,
-            'paginationjml' => $request->paginationjml,
+            // 'paginationjml' => $request->paginationjml,
             'lembaga_nama' => $request->lembaga_nama,
             'lembaga_jalan' => $request->lembaga_jalan,
             'lembaga_kota' => $request->lembaga_kota,
             'lembaga_telp' => $request->lembaga_telp,
             'sekolahttd' => $request->sekolahttd,
-            'wa_status' => $request->wa_status,
-            'wa_linkoff' => $request->wa_linkoff,
-            'wa_linkon' => $request->wa_linkon,
+            // 'wa_status' => $request->wa_status,
+            // 'wa_linkoff' => $request->wa_linkoff,
+            // 'wa_linkon' => $request->wa_linkon,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
 

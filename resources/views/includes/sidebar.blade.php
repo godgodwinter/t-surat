@@ -3,6 +3,7 @@
       <h3>General</h3>
       <ul class="nav side-menu">
         <li><a href="{{route('dashboard')}}"><i class="fa fa-laptop"></i> Beranda </a></li>
+        <li><a href="{{route('settings')}}"><i class="fa fa-laptop"></i> Pengaturan </a></li>
         <li><a href="{{route('divisi')}}"><i class="fa fa-laptop"></i> Divisi </a></li>
       <li><a href="{{route('users')}}"><i class="fa fa-laptop"></i> Users </a></li>
 

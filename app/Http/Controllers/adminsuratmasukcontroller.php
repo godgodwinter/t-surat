@@ -26,7 +26,6 @@ class adminsuratmasukcontroller extends Controller
     }
     public function store(Request $request)
     {
-
         $request->validate([
             'tgl_arsip'=>'required',
             'perihal'=>'required',

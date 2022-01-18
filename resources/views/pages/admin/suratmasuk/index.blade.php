@@ -82,7 +82,7 @@ Surat Masuk
                     <th>Tujuan / Penerima</th>
                     <th>File</th>
                     <th>Status</th>
-                    <th>Uploaded By</th>
+                    <th>Penerima Surat</th>
                     <th class="text-center">Aksi</th>
                   </tr>
                 </thead>
@@ -92,7 +92,8 @@ Surat Masuk
                     @forelse ($datas as $data)
                   <tr>
                     <td class="text-center">{{$loop->index+1}}</td>
-                    <td>{{Fungsi::tanggalindo($data->tgl)}}</td>
+                    <td>{{Fungsi::tanggalindo($data->tgl_arsip)}}</td>
+                    {{-- <td>{{$data->tgl_arsip}}</td> --}}
                     <td>{{$data->perihal}}</td>
                     <td>-</td>
                     @php

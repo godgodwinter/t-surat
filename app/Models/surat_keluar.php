@@ -20,6 +20,7 @@ class surat_keluar extends Model
             'divisi_id',
             'users_id',
             'status',
+            'kategori_id',
         ];
 
 }
