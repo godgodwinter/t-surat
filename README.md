@@ -80,7 +80,7 @@
 [![Product Name Screen Shot][product-screenshot-ss4]](https://github.com/godgodwinter/t-surat)
 <!-- [![Product Name Screen Shot][product-screenshot-ss5]](https://github.com/godgodwinter/t-surat) -->
 
-SPK SSB Penilaian Pemain
+Sistem Administrasi Surat
 
 ### Built With
 
@@ -165,7 +165,7 @@ This is an example of how to list things you need to use the software and how to
    ```
 6. Jika ingin menggunakan data palsu untuk testing lanjutkan langkah 6 ini
    ```sh
-   php artisan db:seed --class=oneseeder  //untuk meload data user admin@gmail.com pass 12345678
+   php artisan db:seed --class=oneseeder  //untuk meload data user admin pass admin
    ```
    
 
