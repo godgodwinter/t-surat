@@ -57,7 +57,7 @@ Surat Keluar
         <div class="col-md-12 col-sm-12 ">
           <div class="x_panel">
             <div class="x_title">
-              <a class="btn btn-sm btn-primary" href="{{route('suratkeluar.create')}}"> Tambah </a>
+              {{-- <a class="btn btn-sm btn-primary" href="{{route('suratkeluar.create')}}"> Tambah </a> --}}
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>

@@ -26,7 +26,7 @@
       @if (Auth::user()->tipeuser=='divisi')
 
       <li><a href="{{route('divisi.suratmasuk')}}"><i class="fas fa-envelope"></i>  Surat Masuk</a></li>
-      <li><a href="{{route('divisi.suratkeluar')}}"><i class="fas fa-envelope-open-text"></i> Surat Keluar</a></li>
+      {{-- <li><a href="{{route('divisi.suratkeluar')}}"><i class="fas fa-envelope-open-text"></i> Surat Keluar</a></li> --}}
 
       @endif
 

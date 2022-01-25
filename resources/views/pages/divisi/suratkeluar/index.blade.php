@@ -57,7 +57,7 @@ Surat Keluar
         <div class="col-md-12 col-sm-12 ">
           <div class="x_panel">
             <div class="x_title">
-              <a class="btn btn-sm btn-primary" href="{{route('divisi.suratkeluar.create')}}"> Tambah </a>
+              {{-- <a class="btn btn-sm btn-primary" href="{{route('divisi.suratkeluar.create')}}"> Tambah </a> --}}
               <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -84,7 +84,7 @@ Surat Keluar
                     <th>Status</th>
                     <th>Divisi Mengeluarkan Surat</th>
                     <th>Created By</th>
-                    <th class="text-center">Aksi</th>
+                    {{-- <th class="text-center">Aksi</th> --}}
                   </tr>
                 </thead>
 
@@ -139,16 +139,15 @@ Surat Keluar
                     @endphp
                     <td>{{$divisi_nama}}</td>
                     <td>{{$creator}}</td>
-                    <td class="babeng-min-row">
+                    {{-- <td class="babeng-min-row">
                         @if($data->status!='waiting')
     <button class="btn btn-icon btn-dark btn-sm"
    data-toggle="tooltip" data-placement="top" title="Data tidak bisa dihapus!"><span
         class="pcoded-micon"> <i class="fas fa-trash"></i></span></button>
                         @else
-                        {{-- <x-button-edit link="{{route('suratkeluar.edit',$data->id)}}" /> --}}
                         <x-button-delete link="{{route('suratkeluar.destroy',$data->id)}}" />
                         @endif
-                    </td>
+                    </td> --}}
                   </tr>
                   @endif
                     @empty
